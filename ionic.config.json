@@ -1,0 +1,7 @@
+{
+  "name": "bike-mate",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
