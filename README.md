@@ -63,4 +63,10 @@ This runs the app in development mode at [http://localhost:4200](http://localhos
 
 ---
 
+## 🔒 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
 Enjoy the ride and stay safe! 🏍️✨
