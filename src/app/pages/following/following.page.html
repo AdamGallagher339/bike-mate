@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Following</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+  <ion-item>
+    <ion-input
+      [(ngModel)]="usernameToFollow"
+      placeholder="Enter username to follow"
+      clearInput>
+    </ion-input>
+    <ion-button fill="outline" (click)="followUser()">Follow</ion-button>
+  </ion-item>
+
+
+  <ion-list *ngIf="followedUsers.length > 0; else noFollowed">
+    <ion-item *ngFor="let user of followedUsers" (click)="goToUserDetail(user)">
+      <ion-avatar slot="start">
+        <img [src]="user.photoData || user.photoURL || defaultProfile" alt="Profile" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ '@' + user.username }}</h2>
+        <p><strong>Motorcycle:</strong> {{ user.motorcycleBrand }} {{ user.motorcycleModel }}</p>
+      </ion-label>
+      <ion-button fill="clear" color="danger" (click)="unfollow(user); $event.stopPropagation()">
+        <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+
+  <ng-template #noFollowed>
+    <ion-text color="medium">
+      <p>You’re not following anyone yet.</p>
+    </ion-text>
+  </ng-template>
+
+</ion-content>

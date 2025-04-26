@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="center-title">Bike-Mate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="register-wrapper">
+    <div class="register-card">
+      <h2>Welcome to Bike-Mate</h2>
+
+      <ion-item lines="full">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input
+          type="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          placeholder="Enter your password"
+        ></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" (click)="register()" class="register-button">
+        Register
+      </ion-button>
+
+      <div class="register-link">
+        <span>Don't have an account?</span>
+        <br>
+        <ion-button fill="clear" size="small" type="button" routerLink="/login" class="login-button">
+          Login
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Upcoming Events</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list *ngIf="events.length; else noEvents">
+    <ion-item *ngFor="let event of events">
+      <ion-label>
+        <h2>{{ event.title }}</h2>
+        <p>Date: {{ event.date }} | Time: {{ event.time }}</p>
+        <p>Location: {{ event.location }}</p>
+        <p><strong>{{ event.daysLeft }} day(s) left</strong></p>
+      </ion-label>
+
+      <ion-button *ngIf="event.isOwner" fill="clear" color="medium" (click)="editEvent(event.id)">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button *ngIf="event.isOwner" fill="clear" color="danger" (click)="deleteEvent(event.id)">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noEvents>
+    <ion-text color="medium">
+      <p>No events available. Try creating one!</p>
+    </ion-text>
+  </ng-template>
+</ion-content>

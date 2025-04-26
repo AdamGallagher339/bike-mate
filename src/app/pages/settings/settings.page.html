@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title>Profile Picture</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-avatar style="margin: 0 auto; width: 120px; height: 120px;">
+        <img [src]="previewURL || userProfileImage || defaultProfile" alt="Profile Picture" class="profile-picture" />
+      </ion-avatar>
+      <ion-item lines="none" class="ion-margin-top">
+        <ion-label>Change Photo</ion-label>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Profile Info</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input [(ngModel)]="userData.username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Motorcycle Brand</ion-label>
+        <ion-input [(ngModel)]="userData.motorcycleBrand"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Motorcycle Model</ion-label>
+        <ion-input [(ngModel)]="userData.motorcycleModel"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Rider Type</ion-label>
+        <ion-select [(ngModel)]="userData.riderType">
+          <ion-select-option value="Beginner">Beginner</ion-select-option>
+          <ion-select-option value="Casual">Casual</ion-select-option>
+          <ion-select-option value="Track">Track</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" (click)="saveProfile()">Save Changes</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Danger Zone</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="danger" (click)="deleteAccount()">Delete My Account</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

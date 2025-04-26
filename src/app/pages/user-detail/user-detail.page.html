@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/following"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ user?.username }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card *ngIf="user">
+    <ion-card-header class="ion-text-center">
+      <ion-avatar style="margin: 0 auto; width: 100px; height: 100px;">
+        <img [src]="user.photoData || user.photoURL || defaultProfile" alt="Profile Picture" />
+      </ion-avatar>
+      <ion-card-title>{{ '@' + user.username }}</ion-card-title>
+      <ion-card-subtitle>{{ user.riderType || 'Rider' }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Motorcycle Brand:</strong> {{ user.motorcycleBrand || 'Unknown' }}</p>
+      <p><strong>Motorcycle Model:</strong> {{ user.motorcycleModel || 'Unknown' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="events.length > 0">
+    <ion-card-header>
+      <ion-card-title>Upcoming Events</ion-card-title>
+    </ion-card-header>
+    <ion-list>
+      <ion-item *ngFor="let event of events">
+        <ion-label>
+          <h3>{{ event.title }}</h3>
+          <p><strong>Date:</strong> {{ event.date }} at {{ event.time }}</p>
+          <p><strong>Location:</strong> {{ event.location }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card *ngIf="nextEvent?.location">
+    <ion-card-header>
+      <ion-card-title>Next Event Location</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="width: 100%; height: 200px;">
+        <iframe
+          [src]="googleMapsUrl"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text color="medium" *ngIf="events.length === 0 && user">
+    <p>This rider has no upcoming events.</p>
+  </ion-text>
+</ion-content>
